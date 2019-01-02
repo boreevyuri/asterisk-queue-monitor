@@ -1,0 +1,26 @@
+{
+  "name": "react-boilerplate",
+  "version": "1.0.0",
+  "description": "Basic React Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boreevyuri/react-boilerplate.git"
+  },
+  "keywords": [
+    "Node",
+    "React"
+  ],
+  "author": "Yuri Boreev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boreevyuri/react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/boreevyuri/react-boilerplate#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
