@@ -4,7 +4,11 @@
   "description": "Basic React Boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build-server && npm run build-client",
+    "build-server": "babel src/server --out-dir ./dist",
+    "build-client": "babel src/client --out-dir ./dist/public",
+    "start": "node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +26,10 @@
   "homepage": "https://github.com/boreevyuri/react-boilerplate#readme",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-cli": "^6.26.0"
   }
 }
