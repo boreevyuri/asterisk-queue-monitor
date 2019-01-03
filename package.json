@@ -4,6 +4,7 @@
   "description": "Basic React Boilerplate",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "build-babel": "npm run build-server && npm run build-client",
     "build-babel-server": "babel src/server --out-dir ./dist",
     "build-babel-client": "babel src/client --copy-files --out-dir ./dist/public",
@@ -36,10 +37,12 @@
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
     "expect": "latest",
     "jest": "^23.6.0",
     "regenerator-runtime": "^0.13.1",
     "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0"
+    "webpack-cli": "^3.2.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }
