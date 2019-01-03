@@ -2,6 +2,7 @@
 const path = require('path')
 // import nodeExternals from 'webpack-node-externals'
 const nodeExternals = require('webpack-node-externals')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 const moduleObj = {
   rules: [
@@ -16,6 +17,7 @@ const moduleObj = {
 }
 
 const client = {
+  mode: "development",
   entry: {
     'client': './src/client/index.js'
   },
@@ -24,10 +26,16 @@ const client = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist/public')
   },
-  module: moduleObj
+  module: moduleObj,
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: 'src/client/index.html'
+    })
+  ]
 }
 
 const server = {
+  mode: "development",
   entry: {
     'server': './src/server/index.js'
   },
