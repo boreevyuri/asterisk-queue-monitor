@@ -1,8 +1,10 @@
+import compression from 'compression'
 import express from 'express'
 
 class WebServer {
   constructor() {
     this.app = express()
+    this.app.use(compression())
     this.app.use(express.static('dist/public'))
   }
 

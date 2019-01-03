@@ -54,7 +54,19 @@ const client = {
     new HtmlWebPackPlugin({
       template: 'src/client/index.html'
     })
-  ]
+  ],
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  }
 }
 
 const server = {
