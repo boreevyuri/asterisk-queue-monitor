@@ -1,5 +1,7 @@
-import path from 'path'
-import nodeExternals from 'webpack-node-externals'
+// import * as path from 'path'
+const path = require('path')
+// import nodeExternals from 'webpack-node-externals'
+const nodeExternals = require('webpack-node-externals')
 
 const moduleObj = {
   rules: [
