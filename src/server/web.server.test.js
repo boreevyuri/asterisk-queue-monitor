@@ -1,5 +1,4 @@
 import WebServer from './web.server'
-import expect from 'expect'
 
 //Hack for jest with async
 import regeneratorRuntime from "regenerator-runtime";
