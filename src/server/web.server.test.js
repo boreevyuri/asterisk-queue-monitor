@@ -1,8 +1,5 @@
 import WebServer from './web.server'
 
-//Hack for jest with async
-import regeneratorRuntime from "regenerator-runtime";
-
 describe('Started', () => {
   let webServer = null
 

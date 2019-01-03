@@ -4,20 +4,43 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
+const nodeEnv = process.env.NODE_ENV || 'development'
+const isDevelopment = nodeEnv === 'development'
+
 const moduleObj = {
   rules: [
     {
       test: /\.js$/,
       exclude: /node_modules/,
       use: {
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+
+          presets: [
+
+            ['@babel/preset-env', {
+              exclude: [
+                'transform-async-to-generator',
+                'transform-regenerator'
+              ],
+              loose: true
+            }],
+
+            '@babel/preset-react'
+
+          ],
+
+          plugins: [
+            ['module:fast-async', {spec: true}]
+          ]
+        }
       }
     }
   ]
 }
 
 const client = {
-  mode: "development",
+  mode: isDevelopment ? 'development' : 'production',
   entry: {
     'client': './src/client/index.js'
   },
@@ -35,7 +58,7 @@ const client = {
 }
 
 const server = {
-  mode: "development",
+  mode: isDevelopment ? 'development' : 'production',
   entry: {
     'server': './src/server/index.js'
   },

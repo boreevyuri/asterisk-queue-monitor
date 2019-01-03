@@ -28,6 +28,7 @@
   "homepage": "https://github.com/boreevyuri/react-boilerplate#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "fast-async": "^6.3.8",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
