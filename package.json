@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "asterisk-queue-monitor",
   "version": "1.0.0",
-  "description": "Basic React Boilerplate",
+  "description": "Asterisk queue monitor",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -14,18 +14,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boreevyuri/react-boilerplate.git"
+    "url": "git+https://github.com/boreevyuri/asterisk-queue-monitor.git"
   },
   "keywords": [
     "Node",
-    "React"
+    "React",
+    "Asterisk"
   ],
   "author": "Yuri Boreev",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/boreevyuri/react-boilerplate/issues"
+    "url": "https://github.com/boreevyuri/asterisk-queue-monitor/issues"
   },
-  "homepage": "https://github.com/boreevyuri/react-boilerplate#readme",
+  "homepage": "https://github.com/boreevyuri/asterisk-queue-monitor#readme",
   "dependencies": {
     "compression": "^1.7.3",
     "express": "^4.16.4",
