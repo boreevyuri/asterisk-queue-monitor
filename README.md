@@ -1,9 +1,5 @@
-# React-Boilerplate
-This is my react-boilerplate
+# Asterisk Queue Monitor
+Queue monitor for portrait-oriented display.
 
 ## Setup
-```
-npm install
-npm run build
-npm start
-```
+There is no setup yet
