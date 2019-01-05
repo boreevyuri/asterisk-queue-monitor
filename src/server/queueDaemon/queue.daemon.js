@@ -18,7 +18,7 @@ const amiClient = new AmiClient({
 // Init new list of queues
 const queueList = new QueueList()
 
-
+//Connect to Asterisk
 amiClient.connect(AMI.login, AMI.secret, {host: AMI.host, port: AMI.port})
   .then(() => {
     setInterval(
@@ -33,7 +33,6 @@ amiClient.connect(AMI.login, AMI.secret, {host: AMI.host, port: AMI.port})
       if (error instanceof Error) throw error
     }
   )
-
 
 amiClient.on(`QueueParams`, entry => {
   if (entry.ActionID !== AMI.actionID) return
@@ -59,7 +58,8 @@ amiClient.on(`QueueStatusComplete`, entry => {
   redisClient.set(`Queue`, JSON.stringify(queueList))
   redisClient.quit()
 
-  console.log(JSON.stringify(queueList.content))
+  // Let's debug it with console.log ;-)
+  // console.log(JSON.stringify(queueList.content))
 
   //For future use :)
   //queueList.markAllDead()
