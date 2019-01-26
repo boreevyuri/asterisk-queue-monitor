@@ -2,10 +2,10 @@ const AmiClient = require('asterisk-ami-client')
 const Redis = require('redis')
 const AMI = require('./config')
 
-import QueueList from './QueueList'
-import Queue from './Queue'
-import QueueMember from './QueueMember'
-import Caller from './Caller'
+import QueueList from './queue.list'
+import Queue from './queue'
+import QueueMember from './queue.member'
+import Caller from './caller'
 
 // Init AMI connect
 const amiClient = new AmiClient({

@@ -29,10 +29,15 @@ const moduleObj = {
           ],
 
           plugins: [
-            ['module:fast-async', {spec: true}]
+            ['module:fast-async', {spec: true}],
+            "@babel/plugin-proposal-class-properties"
           ]
         }
       }
+    },
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
     }
   ]
 }
@@ -84,5 +89,21 @@ const server = {
   ]
 }
 
-module.exports = [client, server]
+const queueDaemon = {
+  mode: isDevelopment ? 'development' : 'production',
+  entry: {
+    'queue.daemon': './src/server/queueDaemon/queue.daemon.js'
+  },
+  target: 'node',
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  module: moduleObj,
+  externals: [
+    nodeExternals()
+  ]
+}
+
+module.exports = [client, server, queueDaemon]
 // module.exports = client

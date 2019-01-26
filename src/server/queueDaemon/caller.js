@@ -1,4 +1,4 @@
-import QueueItem from './QueueItem'
+import QueueItem from './queue.item'
 
 class Caller extends QueueItem {
   constructor(callerData) {
