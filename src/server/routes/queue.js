@@ -7,7 +7,7 @@ const router = express.Router()
 // router.get('/', (req, res, next) => {
 // No next
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   const redisClient = redis.createClient()
   redisClient.on('error', err => console.log(`Error: ${err}`))
   redisClient.get('Queue', (err, reply) => {

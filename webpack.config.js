@@ -1,6 +1,4 @@
-// import * as path from 'path'
 const path = require('path')
-// import nodeExternals from 'webpack-node-externals'
 const nodeExternals = require('webpack-node-externals')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
@@ -69,6 +67,7 @@ const client = {
   }
 }
 
+// No reason to pack server side, but... babel
 const server = {
   mode: isDevelopment ? 'development' : 'production',
   entry: {
@@ -86,3 +85,4 @@ const server = {
 }
 
 module.exports = [client, server]
+// module.exports = client

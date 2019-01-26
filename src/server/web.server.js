@@ -2,7 +2,6 @@
 // import express from 'express'
 
 // TODO: learn webpack plugins for mix 'import' with 'require'
-// TODO: learn how to change 'require' to 'import' correctly
 
 const compression = require('compression')
 const express = require('express')
@@ -49,3 +48,4 @@ class WebServer {
 }
 
 export default WebServer
+// module.exports = WebServer

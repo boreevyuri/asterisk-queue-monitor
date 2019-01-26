@@ -1,4 +1,5 @@
 import WebServer from './web.server'
+// const WebServer = require('./web.server')
 
 let webServer = new WebServer()
 webServer.start()
