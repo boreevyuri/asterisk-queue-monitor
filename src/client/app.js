@@ -75,13 +75,13 @@ class App extends Component {
       //filling operators list
       for (let operator in content[element].memberList) {
 
-        //TODO: not obvious, need to refactor
-        const foundedOperator = operators.find(item => item.name === content[element].memberList[operator].name)
+        const _operator = content[element].memberList[operator]
+        const foundedOperator = operators.find(item => item.name === _operator.name)
 
         if (foundedOperator) {
-          foundedOperator.updateData(content[element].memberList[operator])
+          foundedOperator.updateData(_operator)
         } else {
-          operators.push(new Operator(content[element].memberList[operator]))
+          operators.push(_operator)
         }
       }
     }
