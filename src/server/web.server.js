@@ -17,6 +17,11 @@ class WebServer {
     this.app.use(compression())
     this.app.use(express.static('dist/public'))
 
+    this.app.use(function (req, res, next) {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      next()
+    })
     this.app.use('/queue', queueRouter)
   }
 

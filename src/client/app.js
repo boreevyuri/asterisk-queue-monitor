@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
+import _ from 'lodash'
 import config from './config'
 import Caller from './app/caller'
+import Operator from './app/operator'
 import Title from './app/title'
 
 /**
-const exampleQueue = {
+ const exampleQueue = {
   exampleQueue: {
     queue: 'example',
     alive: true,
@@ -48,7 +50,7 @@ const exampleQueue = {
     }
   }
 }
-*/
+ */
 
 class App extends Component {
 
@@ -65,31 +67,34 @@ class App extends Component {
       .then(res => res.json())
 
 
-    for (let element in content) {
+    _.forIn(content, (queue) => {
 
-      //filling callers list
-      for (let caller in content[element].callerList) {
-        callers.push(new Caller(content[element].callerList[caller]))
+      //get callerList
+      if (!_.isEmpty(queue['callerList'])) {
+        _.forIn(queue['callerList'], (caller) => {
+          callers.push(new Caller(caller))
+        })
       }
 
-      //filling operators list
-      for (let operator in content[element].memberList) {
-
-        const _operator = content[element].memberList[operator]
-        const foundedOperator = operators.find(item => item.name === _operator.name)
-
-        if (foundedOperator) {
-          foundedOperator.updateData(_operator)
-        } else {
-          operators.push(_operator)
-        }
+      //get memberList
+      if (!_.isEmpty(queue['memberList'])) {
+        _.forIn(queue['memberList'], (member) => {
+          let founded = _.find(operators, {'name': member['name']})
+          switch (founded) {
+            case undefined:
+              operators.push(new Operator(member))
+              break
+            default:
+              founded.updateData(member)
+          }
+        })
       }
-    }
+    })
 
     //Fill state
     this.setState({
-      callers: callers,
-      operators: operators
+      callers,
+      operators
     })
 
   }
@@ -108,8 +113,8 @@ class App extends Component {
 
         {/*Callers table*/}
         <Title
-          title = {'Queue'}
-          subTitle = {[
+          title={'Queue'}
+          subTitle={[
             {
               count: this.state.callers.length,
               title: 'callers'
@@ -121,8 +126,8 @@ class App extends Component {
 
         {/*Operators table*/}
         <Title
-          title = {'Operators'}
-          subTitle = {[
+          title={'Operators'}
+          subTitle={[
             {
               count: this.state.operators.length,
               title: 'ops'

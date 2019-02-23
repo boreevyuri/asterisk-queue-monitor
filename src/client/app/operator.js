@@ -31,3 +31,5 @@ class Operator {
   }
 
 }
+
+export default Operator

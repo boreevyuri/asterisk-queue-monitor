@@ -7,7 +7,7 @@ class Title extends Component {
       <h1>
         <b>{this.props.title}:</b> {this.props.subTitle.map((el, index) => (
           <span key={index}>
-            {el.count} {el.title}
+            {el.count} {el.title}&nbsp;
           </span>
       ))}
       </h1>
