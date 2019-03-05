@@ -145,8 +145,6 @@ class App extends Component {
         />
 
         <OperatorsTable children={this.state.operators}/>
-        {/*TODO: Operators table header*/}
-        {/*TODO: Operators table*/}
 
       </div>
     )
