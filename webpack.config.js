@@ -27,6 +27,7 @@ const moduleObj = {
               ],
               loose: true,
               useBuiltIns: 'entry',
+              // targets: 'web'
               targets: {
                 'chrome': '70'
               }
@@ -71,7 +72,9 @@ const client = {
     new HtmlWebPackPlugin({
       template: 'src/client/index.html'
     }),
-    new LodashModuleReplacementPlugin,
+    new LodashModuleReplacementPlugin({
+      shorthands: true
+    }),
     // new BundleAnalyzerPlugin()
   ],
   devServer: {
@@ -95,7 +98,7 @@ const client = {
           // safari10: false,
           // ecma: 6,
           output: {
-            comments: false
+            comments: true
           }
         }
       })
@@ -145,5 +148,6 @@ const queueDaemon = {
   ]
 }
 
-module.exports = [client, server, queueDaemon]
+// module.exports = [client, server, queueDaemon]
+module.exports = [server, queueDaemon, client]
 // module.exports = client

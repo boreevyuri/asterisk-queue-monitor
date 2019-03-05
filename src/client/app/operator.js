@@ -7,7 +7,8 @@ class Operator {
     this.status = props.status
     this.paused = props.paused
     this.inCall = props.inCall
-    this.lastCall = new Date(props.lastCall * 1000)
+    this.lastCall = props.lastCall !== '0' ?
+      new Date(props.lastCall * 1000).toLocaleTimeString() : ''
     this.queue = [props.queue]
   }
 

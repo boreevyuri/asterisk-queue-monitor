@@ -4,6 +4,8 @@ import config from './config'
 import Caller from './app/caller'
 import Operator from './app/operator'
 import Title from './app/title'
+import CallerTable from './app/caller.table'
+import OperatorsTable from './app/operator.table'
 
 /**
  const exampleQueue = {
@@ -80,6 +82,7 @@ class App extends Component {
       if (!_.isEmpty(queue['memberList'])) {
         _.forIn(queue['memberList'], (member) => {
           let founded = _.find(operators, {'name': member['name']})
+          // console.log(founded)
           switch (founded) {
             case undefined:
               operators.push(new Operator(member))
@@ -109,7 +112,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className={'container-fluid mx-0'}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '100%'
+      }}>
 
         {/*Callers table*/}
         <Title
@@ -121,8 +127,7 @@ class App extends Component {
             }
           ]}
         />
-        {/*TODO: Table header*/}
-        {/*TODO: Callers table*/}
+        <CallerTable children={this.state.callers}/>
 
         {/*Operators table*/}
         <Title
@@ -139,6 +144,7 @@ class App extends Component {
           ]}
         />
 
+        <OperatorsTable children={this.state.operators}/>
         {/*TODO: Operators table header*/}
         {/*TODO: Operators table*/}
 
