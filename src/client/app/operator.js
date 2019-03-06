@@ -1,25 +1,40 @@
-class Operator {
+import React from 'react'
 
-  constructor(props) {
-    // super(props)
-    this.name = props.name
-    this.membership = props.membership
-    this.status = props.status
-    this.paused = props.paused
-    this.inCall = props.inCall
-    this.lastCall = props.lastCall !== '0' ?
-      new Date(props.lastCall * 1000).toLocaleTimeString() : ''
-    this.queue = [props.queue]
+class QueueName extends React.Component {
+
+  render() {
+    return (
+      <span
+        className={
+          +this.props.active
+            ? 'active'
+            : 'passive'
+        }
+        children={this.props.children}
+      />
+    )
   }
+}
+
+class Operator extends React.Component {
+
+  name = this.props.name
+  membership = this.props.membership
+  status = this.props.status
+  paused = this.props.paused
+  inCall = this.props.inCall
+  lastCall = this.props.lastCall !== '0' ?
+    new Date(this.props.lastCall * 1000).toLocaleTimeString() : ''
+  queue = [<QueueName key={0} active={this.props.inCall}>{this.props.queue} </QueueName>]
+
 
   updateData(data) {
-    //TODO: refactor it, remove else
     if (data.queue) {
       if (+data.inCall) {
-        this.queue.splice(0, 0, data.queue)
-      } else {
-        this.queue.push(data.queue)
+        this.queue.splice(0, 0, <QueueName key={this.queue.length} active={data.inCall}>{data.queue} </QueueName>)
+        return
       }
+      this.queue.push(<QueueName key={this.queue.length} active={data.inCall}>{data.queue} </QueueName>)
     }
   }
 
