@@ -19,7 +19,7 @@ class QueueName extends React.Component {
 class Operator extends React.Component {
 
   name = this.props.name
-  membership = this.props.membership
+  // membership = this.props.membership
   status = this.props.status
   paused = this.props.paused
   inCall = this.props.inCall
@@ -46,6 +46,29 @@ class Operator extends React.Component {
     return +this.status === 2
   }
 
+
+  render() {
+
+    const order = [
+      'name',
+      'queue',
+      'lastCall',
+      'status'
+    ]
+
+    return (
+      <React.Fragment>
+        {order.map((el, index) => (
+          <div
+            key={index} className={'cell'}
+          >
+            {this[el]}
+          </div>
+        ))}
+      </React.Fragment>
+    )
+
+  }
 }
 
 export default Operator

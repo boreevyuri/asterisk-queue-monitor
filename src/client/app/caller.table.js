@@ -12,19 +12,19 @@ class TableHeader extends React.Component {
   render() {
 
     const header = this.cellText.map((i, index) => (
-        <div key={index} style={{
-          border: '2px solid black',
-          background: '#fc3'
-        }}>
-          <h2>{i}</h2>
+        <div
+          key={index}
+          className={'cell'}
+        >
+          <h4>{i}</h4>
         </div>
       )
     )
 
     return (
-      <React.Fragment>
+      <div className={'caller header'}>
         {header}
-      </React.Fragment>
+      </div>
     )
   }
 }
@@ -46,16 +46,13 @@ class CallerLine extends React.Component {
     const line = this.order.map((el, index) => (
       <div
         key={index}
-        style={{
-          border: '1px solid black',
-          fontSize: '2rem'
-        }}
+        className={'cell'}
       >{this.props.caller[el]}</div>
     ))
     return (
-      <React.Fragment>
+      <div className={'caller'}>
         {line}
-      </React.Fragment>
+      </div>
     )
   }
 }
@@ -65,11 +62,7 @@ class CallerTable extends React.Component {
   render() {
 
     return (
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 2fr 5fr 2fr',
-        textAlign: 'center'
-      }}>
+      <div className={'table'}>
         <TableHeader/>
 
         {this.props.children.map((caller, index) => (

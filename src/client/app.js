@@ -112,10 +112,7 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '100%'
-      }}>
+      <React.Fragment>
 
         {/*Callers table*/}
         <Title
@@ -146,7 +143,7 @@ class App extends Component {
 
         <OperatorsTable children={this.state.operators}/>
 
-      </div>
+      </React.Fragment>
     )
   }
 }
