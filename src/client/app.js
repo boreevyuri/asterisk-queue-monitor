@@ -4,8 +4,7 @@ import config from './config'
 import Caller from './app/caller'
 import Operator from './app/operator'
 import Title from './app/title'
-import CallerTable from './app/caller.table'
-import OperatorsTable from './app/operator.table'
+import Table from './app/table'
 
 /**
  const exampleQueue = {
@@ -111,6 +110,21 @@ class App extends Component {
   }
 
   render() {
+
+    const callerColumns = [
+      'Pos.',
+      'Queue',
+      'Caller number',
+      'Duration'
+    ]
+
+    const operatorColumns = [
+      'Operator',
+      'Queue',
+      'Last Call',
+      'Status'
+    ]
+
     return (
       <React.Fragment>
 
@@ -124,7 +138,12 @@ class App extends Component {
             }
           ]}
         />
-        <CallerTable children={this.state.callers}/>
+
+        <Table
+          columnNames={callerColumns}
+          mainStyleClass={'caller'}
+          children={this.state.callers}
+        />
 
         {/*Operators table*/}
         <Title
@@ -141,7 +160,11 @@ class App extends Component {
           ]}
         />
 
-        <OperatorsTable children={this.state.operators}/>
+        <Table
+          columnNames={operatorColumns}
+          mainStyleClass={'oper'}
+          children={this.state.operators}
+        />
 
       </React.Fragment>
     )

@@ -1,10 +1,30 @@
-class Caller {
-  constructor(props) {
-    this.name = props.name
-    this.queue = props.queue
-    this.position = props.position
-    this.duration = props.duration
+import React from 'react'
+
+class Caller extends React.Component {
+
+  name = this.props.name
+  queue = this.props.queue
+  position = this.props.position
+  duration = this.props.duration
+  order = this.props.order || [
+    'position',
+    'queue',
+    'name',
+    'duration'
+  ]
+
+  render() {
+    return (
+      <React.Fragment>
+        {this.order.map((el, index) => (
+          <div key={index} className={'cell'}>
+            {this[el]}
+          </div>
+        ))}
+      </React.Fragment>
+    )
   }
+
 }
 
 export default Caller
