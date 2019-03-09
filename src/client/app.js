@@ -56,6 +56,8 @@ import Table from './app/table'
 class App extends Component {
 
   state = {
+    showCallers: config.showCallers || 15,
+    showAllCallers: false,
     callers: [],
     operators: []
   }
@@ -109,6 +111,12 @@ class App extends Component {
     setTimeout('location.reload()', config.refreshPageInterval)
   }
 
+  toggleCallers() {
+    this.setState({
+      showAllCallers: !this.state.showAllCallers
+    })
+  }
+
   render() {
 
     const callerColumns = [
@@ -137,9 +145,12 @@ class App extends Component {
               title: 'callers'
             }
           ]}
+          alert={this.state.callers.length > this.state.showCallers}
+          onClick={this.toggleCallers.bind(this)}
         />
 
         <Table
+          count={this.state.showAllCallers ? 65535 : this.state.showCallers}
           columnNames={callerColumns}
           mainStyleClass={'caller'}
           children={this.state.callers}

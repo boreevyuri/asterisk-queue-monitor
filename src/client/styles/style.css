@@ -38,3 +38,7 @@ h1, h4 {
 .active {
   font-weight: bold;
 }
+
+.alert {
+  background: indianred;
+}
