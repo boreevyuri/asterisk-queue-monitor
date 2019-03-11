@@ -42,3 +42,15 @@ h1, h4 {
 .alert {
   background: indianred;
 }
+
+.oper .busy {
+  background: indianred;
+}
+
+.oper .free {
+  background: darkseagreen;
+}
+
+.oper .paused {
+  background: lightgrey;
+}

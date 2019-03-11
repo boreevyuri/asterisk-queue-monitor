@@ -43,22 +43,23 @@ class Operator extends React.Component {
   }
 
   renderStatus() {
-    if (+this.props.paused) {
-      return <span>Paused</span>
-    }
-    if (+this.props.status === 2) {
-      return <span>Busy</span>
-    }
-    return <span>Free</span>
+    return +this.props.paused ? <span>Paused</span>
+      : +this.props.status === 2 ? <span>Busy</span>
+        : <span>Free</span>
   }
 
+  addClass() {
+    return +this.props.paused ? `paused`
+      : +this.props.status === 2 ? `busy`
+        :`free`
+  }
 
   render() {
 
     return (
       <React.Fragment>
         {this.order.map((el, index) => (
-          <div key={index} className={'cell'}>
+          <div key={index} className={`${this.addClass()} cell`}>
             {this[el]}
           </div>
         ))}
