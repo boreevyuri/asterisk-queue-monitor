@@ -23,10 +23,11 @@ class Operator extends React.Component {
     'name',
     'queue',
     'lastCall',
-    'status'
+    'statusRendered'
   ]
-  // membership = this.props.membership
-  status = this.renderStatus()
+  status = this.props.status
+  statusRendered = this.renderStatus()
+  paused = this.props.paused
   inCall = this.props.inCall
   lastCall = this.props.lastCall !== '0' ?
     new Date(this.props.lastCall * 1000).toLocaleTimeString() : ''
@@ -43,15 +44,15 @@ class Operator extends React.Component {
   }
 
   renderStatus() {
-    return +this.props.paused ? <span>Paused</span>
-      : +this.props.status === 2 ? <span>Busy</span>
+    return +this.paused ? <span>Paused</span>
+      : +this.status === 2 ? <span>Busy</span>
         : <span>Free</span>
   }
 
   addClass() {
-    return +this.props.paused ? `paused`
-      : +this.props.status === 2 ? `busy`
-        :`free`
+    return +this.paused ? `paused`
+      : +this.status === 2 ? `busy`
+        : `free`
   }
 
   render() {
