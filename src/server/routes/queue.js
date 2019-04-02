@@ -3,10 +3,6 @@ const redis = require('redis')
 
 const router = express.Router()
 
-
-// router.get('/', (req, res, next) => {
-// No next
-
 router.get('/', (req, res, next) => {
   const redisClient = redis.createClient()
   redisClient.on('error', err => console.log(`Error: ${err}`))

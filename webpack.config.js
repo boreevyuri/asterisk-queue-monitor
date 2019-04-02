@@ -17,19 +17,19 @@ const moduleObj = {
       use: {
         loader: 'babel-loader',
         options: {
-
           presets: [
-
             ['@babel/preset-env', {
               exclude: [
                 'transform-async-to-generator',
                 'transform-regenerator'
               ],
               loose: true,
-              useBuiltIns: 'entry',
+              useBuiltIns: 'usage',
+              corejs: 3,
               // targets: 'web'
               targets: {
-                'chrome': '70'
+                'node': 'current',
+                'chrome': '71'
               }
             }],
 
@@ -94,11 +94,11 @@ const client = {
       new TerserPlugin({
         parallel: true,
         terserOptions: {
-          // ie8: false,
-          // safari10: false,
-          // ecma: 6,
+          ie8: false,
+          safari10: false,
+          ecma: 6,
           output: {
-            comments: true
+            comments: false
           }
         }
       })
@@ -116,26 +116,26 @@ const client = {
 }
 
 // No reason to pack server side, but... babel
-const server = {
-  mode: isDevelopment ? 'development' : 'production',
-  entry: {
-    'server': './src/server/index.js'
-  },
-  target: 'node',
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  module: moduleObj,
-  externals: [
-    nodeExternals()
-  ]
-}
+// const server = {
+//   mode: isDevelopment ? 'development' : 'production',
+//   entry: {
+//     'server': './index.js'
+//   },
+//   target: 'node',
+//   output: {
+//     filename: '[name].js',
+//     path: path.resolve(__dirname, 'dist')
+//   },
+//   module: moduleObj,
+//   externals: [
+//     nodeExternals()
+//   ]
+// }
 
 const queueDaemon = {
   mode: isDevelopment ? 'development' : 'production',
   entry: {
-    'queue.daemon': './src/server/queueDaemon/queue.daemon.js'
+    'queue.daemon': './src/queueDaemon/index.js'
   },
   target: 'node',
   output: {
@@ -149,5 +149,6 @@ const queueDaemon = {
 }
 
 // module.exports = [client, server, queueDaemon]
-module.exports = [server, queueDaemon, client]
-// module.exports = client
+// module.exports = [server, queueDaemon, client]
+// module.exports = server
+module.exports = [client, queueDaemon]

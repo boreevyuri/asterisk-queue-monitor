@@ -66,6 +66,6 @@ amiClient.on(`QueueStatusComplete`, entry => {
 })
 
 
-amiClient.on(`resp_${AMI.actionID}`, response => {
-  // console.log(JSON.stringify(queueList.content))
-})
+// amiClient.on(`resp_${AMI.actionID}`, response => {
+//   // console.log(JSON.stringify(queueList.content))
+// })

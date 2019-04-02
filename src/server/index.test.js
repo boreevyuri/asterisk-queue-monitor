@@ -1,4 +1,4 @@
-import WebServer from './web.server'
+import WebServer from './index'
 
 describe('Started', () => {
   let webServer = null
