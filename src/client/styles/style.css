@@ -142,5 +142,5 @@ h1 {
 
 .clickable:hover {
   background: lightyellow;
-  vertical-align: 5px;
+  transform: translateX(3px);
 }
