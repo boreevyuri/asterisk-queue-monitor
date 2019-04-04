@@ -42,7 +42,8 @@ class WebServer {
 
     this.app.locals.jwtSecret = JWT_SECRET
 
-    this.app.use('/queue', jwtMiddleware, queueRouter)
+    // this.app.use('/queue', jwtMiddleware, queueRouter)
+    this.app.use('/queue', queueRouter)
     // this.app.use('/', indexRouter)
     this.app.use('/userauth', userAuth)
 

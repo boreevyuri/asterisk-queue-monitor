@@ -44,8 +44,8 @@ class Operator extends React.Component {
   }
 
   renderStatus() {
-    return +this.paused ? <span>Paused</span>
-      : +this.status === 2 ? <span>Busy</span>
+    return +this.props.paused ? <span>Paused</span>
+      : +this.props.status === 2 ? <span>Busy</span>
         : <span>Free</span>
   }
 

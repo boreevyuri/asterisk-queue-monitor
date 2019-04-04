@@ -65,7 +65,8 @@ const client = {
   target: 'web',
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist/public')
+    // path: path.resolve(__dirname, 'dist/public')
+    path: path.resolve(__dirname, 'dist')
   },
   module: moduleObj,
   plugins: [
@@ -79,8 +80,10 @@ const client = {
   ],
   devServer: {
     port: 3030,
-    contentBase: path.resolve(__dirname, 'dist/public'),
-    compress: true,
+    // contentBase: path.resolve(__dirname, 'dist/public'),
+    contentBase: path.resolve(__dirname, 'dist'),
+    // publicPath: '/',
+    // compress: true,
     // open: true,
     open: false,
     overlay: {
@@ -152,3 +155,4 @@ const queueDaemon = {
 // module.exports = [server, queueDaemon, client]
 // module.exports = server
 module.exports = [client, queueDaemon]
+

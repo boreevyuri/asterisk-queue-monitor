@@ -1,11 +1,91 @@
-body {
-  margin: 0;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  font-size: large;
+@media screen and (orientation: portrait) and (min-width: 1024px) {
+  #root {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    margin: 0;
+    font-size: large;
+  }
+
+  .header {
+    font-size: 1rem;
+  }
+
+  .cell {
+    font-size: 2rem;
+  }
+
 }
 
-h1, h4 {
+@media screen and (orientation: landscape) and (min-width: 1024px) and (max-width: 1366px) {
+  #root {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+  .cell {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (orientation: landscape) and (min-width: 1366px) {
+  #root {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body {
+    margin: 0;
+    font-size: large;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  .header {
+    font-size: 1rem;
+  }
+
+  .cell {
+    font-size: 1.5rem;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+#root {
+  display: grid;
+}
+
+.header {
+  background: #fc3;
+}
+
+.cell {
+  border: 1px solid grey;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+h4 {
   margin: 0;
+}
+
+h1 {
+  margin: 1rem 0;
 }
 
 .table {
@@ -23,16 +103,12 @@ h1, h4 {
   grid-template-columns: 1.5fr 6fr 2fr 2fr;
 }
 
-.cell {
-  border: 1px solid grey;
-  font-size: 2rem;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.header {
-  background: #fc3;
-  font-size: 1rem;
+.infoblock {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .active {
@@ -53,4 +129,18 @@ h1, h4 {
 
 .oper .paused {
   background: lightgrey;
+}
+
+.caller .longwait {
+  font-weight: bold;
+  background: lightyellow;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background: lightyellow;
+  vertical-align: 5px;
 }

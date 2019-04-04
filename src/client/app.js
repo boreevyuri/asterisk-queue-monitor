@@ -3,8 +3,8 @@ import _ from 'lodash'
 import config from './config'
 import Caller from './app/caller'
 import Operator from './app/operator'
-import Title from './app/title'
-import Table from './app/table'
+import CallerTable from './app/callertable'
+import OperatorTable from './app/operatortable'
 
 /**
  const exampleQueue = {
@@ -56,15 +56,17 @@ import Table from './app/table'
 class App extends Component {
 
   state = {
-    showCallers: config.showCallers || 15,
+    // showCallers: config.showCallers || 15,
     showAllCallers: false,
     callers: [],
-    operators: []
+    operators: [],
+    queueSizes: []
   }
 
   updateQueue = async () => {
     let callers = []
     let operators = []
+    let queueSizes = []
 
     const {content} = await fetch(config.queueUrl)
       .then(res => res.json())
@@ -76,6 +78,10 @@ class App extends Component {
       if (!_.isEmpty(queue['callerList'])) {
         _.forIn(queue['callerList'], (caller) => {
           callers.push(new Caller(caller))
+        })
+        queueSizes.push({
+          name: queue['queue'],
+          count: _.size(queue['callerList'])
         })
       }
 
@@ -98,7 +104,8 @@ class App extends Component {
     //Fill state
     this.setState({
       callers,
-      operators
+      operators,
+      queueSizes
     })
 
   }
@@ -119,64 +126,19 @@ class App extends Component {
 
   render() {
 
-    const callerColumns = [
-      'Pos.',
-      'Queue',
-      'Caller number',
-      'Duration'
-    ]
-
-    const operatorColumns = [
-      'Operator',
-      'Queue',
-      'Last Call',
-      'Status'
-    ]
-
     return (
       <React.Fragment>
-
-        {/*Callers table*/}
-        <Title
-          title={'Queue'}
-          subTitle={[
-            {
-              count: this.state.callers.length,
-              title: 'callers'
-            }
-          ]}
-          alert={this.state.callers.length > this.state.showCallers}
-          onClick={this.toggleCallers.bind(this)}
+        <CallerTable
+          callers={this.state.callers}
+          showAllCallers={this.state.showAllCallers}
+          toggleCallers={this.toggleCallers.bind(this)}
+          queueSizes={this.state.queueSizes}
         />
 
-        <Table
-          count={this.state.showAllCallers ? 65535 : this.state.showCallers}
-          columnNames={callerColumns}
-          mainStyleClass={'caller'}
-          children={this.state.callers}
+        <OperatorTable
+          operators={this.state.operators}
+          queueSizes={this.state.queueSizes}
         />
-
-        {/*Operators table*/}
-        <Title
-          title={'Operators'}
-          subTitle={[
-            {
-              count: this.state.operators.length,
-              title: 'ops'
-            },
-            {
-              count: this.state.operators.filter(i => +i.status !== 2 && +i.paused !== 1).length,
-              title: 'reachable'
-            }
-          ]}
-        />
-
-        <Table
-          columnNames={operatorColumns}
-          mainStyleClass={'oper'}
-          children={this.state.operators}
-        />
-
       </React.Fragment>
     )
   }

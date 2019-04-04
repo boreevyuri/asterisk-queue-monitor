@@ -13,11 +13,17 @@ class Caller extends React.Component {
     'duration'
   ]
 
+  maxDuration = 600
+
+  addClass() {
+    return +this.duration > this.maxDuration ? `longwait ` : null
+  }
+
   render() {
     return (
       <React.Fragment>
         {this.order.map((el, index) => (
-          <div key={index} className={'cell'}>
+          <div key={index} className={`${this.addClass()} cell`}>
             {this[el]}
           </div>
         ))}

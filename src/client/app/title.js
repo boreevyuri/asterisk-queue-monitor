@@ -5,9 +5,9 @@ class Title extends Component {
   render() {
 
     return (
-      <h1>
+      <h1 className={`${this.props.alert ? 'alert ' : ''}${this.props.onClick ? 'clickable' : ''}`} onClick={this.props.onClick}>
         <b>{this.props.title}:</b> {this.props.subTitle.map((el, index) => (
-          <span key={index} className={this.props.alert ? 'alert' : null} onClick={this.props.onClick}>
+          <span key={index}>
             {el.count} {el.title}&nbsp;
           </span>
       ))}
