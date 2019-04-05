@@ -7,6 +7,8 @@ const expressJwt = require('express-jwt')
 const queueRouter = require('./routes/queue')
 const userAuth = require('./routes/userauth')
 
+const config = require('./config')
+
 const PORT = process.env.PORT || 3000
 const JWT_SECRET = process.env.JWT_SECRET || 'super-secret-word'
 // const PUBLIC_URLS = [
@@ -41,6 +43,7 @@ class WebServer {
     this.app.use(bodyParser.json())
 
     this.app.locals.jwtSecret = JWT_SECRET
+    this.app.locals.blacklist = config.blacklist
 
     // this.app.use('/queue', jwtMiddleware, queueRouter)
     this.app.use('/queue', queueRouter)
