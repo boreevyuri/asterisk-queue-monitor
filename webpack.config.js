@@ -58,10 +58,6 @@ const client = {
     'polyfill': '@babel/polyfill',
     'client': './src/client/index.js'
   },
-  // entry: [
-  //   '@babel/polyfill',
-  //   './src/client/index.js'
-  // ],
   target: 'web',
   output: {
     filename: '[name].js',
@@ -78,19 +74,19 @@ const client = {
     }),
     // new BundleAnalyzerPlugin()
   ],
-  devServer: {
-    port: 3030,
-    // contentBase: path.resolve(__dirname, 'dist/public'),
-    contentBase: path.resolve(__dirname, 'dist'),
-    // publicPath: '/',
-    // compress: true,
-    // open: true,
-    open: false,
-    overlay: {
-      warnings: true,
-      errors: true
-    }
-  },
+  // devServer: {
+  //   port: 3030,
+  //   // contentBase: path.resolve(__dirname, 'dist/public'),
+  //   contentBase: path.resolve(__dirname, 'dist'),
+  //   // publicPath: '/',
+  //   // compress: true,
+  //   // open: true,
+  //   open: false,
+  //   overlay: {
+  //     warnings: true,
+  //     errors: true
+  //   }
+  // },
   optimization: {
     runtimeChunk: 'single',
     minimizer: [
@@ -118,7 +114,7 @@ const client = {
   }
 }
 
-// No reason to pack server side, but... babel
+// No reason to pack server side, but...
 // const server = {
 //   mode: isDevelopment ? 'development' : 'production',
 //   entry: {

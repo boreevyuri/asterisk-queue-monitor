@@ -21,17 +21,19 @@ class CallerTable extends Component {
 
   render() {
 
+    const callers = this.props.callers
+
     return (
       <div>
         <Title
           title={'Queue'}
           subTitle={[
             {
-              count: this.props.callers.length,
+              count: callers.length,
               title: 'callers'
             }
           ]}
-          alert={this.props.callers.length > this.props.showCallers}
+          alert={callers.length > this.props.showCallers}
           onClick={this.props.toggleCallers}
         />
         {/*InfoBlock*/}
@@ -40,7 +42,7 @@ class CallerTable extends Component {
         <Table
           columnNames={callerColumns}
           mainStyleClass={'caller'}
-          children={this.sortCallers(this.props.callers)}
+          children={this.sortCallers(callers)}
         />
       </div>
     )

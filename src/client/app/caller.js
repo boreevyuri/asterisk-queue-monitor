@@ -12,7 +12,6 @@ class Caller extends React.Component {
     'name',
     'duration'
   ]
-
   maxDuration = 600
 
   addClass() {

@@ -9,10 +9,12 @@ const operatorColumns = [
   'Status'
 ]
 
-
 class OperatorTable extends Component {
 
+
   render() {
+
+    const operators = this.props.operators
 
     return (
       <div>
@@ -20,11 +22,11 @@ class OperatorTable extends Component {
           title={'Operators'}
           subTitle={[
             {
-              count: this.props.operators.length,
+              count: operators.length,
               title: 'ops'
             },
             {
-              count: this.props.operators.filter(i => +i.status !== 2 && +i.paused !== 1).length,
+              count: operators.filter(i => +i.status !== 2 && +i.paused !== 1).length,
               title: 'reachable'
             }
           ]}
@@ -33,7 +35,7 @@ class OperatorTable extends Component {
         <Table
           columnNames={operatorColumns}
           mainStyleClass={'oper'}
-          children={this.props.operators}
+          children={operators}
         />
       </div>
     )

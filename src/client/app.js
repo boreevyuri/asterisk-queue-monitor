@@ -56,7 +56,6 @@ import OperatorTable from './app/operatortable'
 class App extends Component {
 
   state = {
-    // showCallers: config.showCallers || 15,
     showAllCallers: false,
     callers: [],
     operators: [],

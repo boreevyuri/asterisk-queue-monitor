@@ -1,4 +1,5 @@
 import React from 'react'
+import {Trans} from 'react-i18next'
 
 class QueueName extends React.Component {
 
@@ -44,9 +45,9 @@ class Operator extends React.Component {
   }
 
   renderStatus() {
-    return +this.props.paused ? <span>Paused</span>
-      : +this.props.status === 2 ? <span>Busy</span>
-        : <span>Free</span>
+    return +this.props.paused ? <span><Trans>Paused</Trans></span>
+      : +this.props.status === 2 ? <span><Trans>Busy</Trans></span>
+        : <span><Trans>Free</Trans></span>
   }
 
   addClass() {
