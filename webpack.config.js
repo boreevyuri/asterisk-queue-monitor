@@ -61,8 +61,8 @@ const client = {
   target: 'web',
   output: {
     filename: '[name].js',
-    // path: path.resolve(__dirname, 'dist/public')
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist/public')
+    // path: path.resolve(__dirname, 'dist')
   },
   module: moduleObj,
   plugins: [
