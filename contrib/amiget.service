@@ -1,0 +1,15 @@
+[Unit]
+Description=Ami Daemon
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/asterisk-queue-monitor
+Restart=always
+RestartSec=10
+User=node
+Group=node
+ExecStart=/usr/bin/node /opt/asterisk-queue-monitor/dist/queue.daemon.js
+NonBlocking=true
+
+[Install]
+WantedBy=multi-user.target

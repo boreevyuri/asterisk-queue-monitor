@@ -1,0 +1,16 @@
+[Unit]
+Description=AmiMonitor Web
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/asterisk-queue-monitor
+Restart=always
+RestartSec=10
+User=node
+Group=node
+Environment=NODE_ENV=production PORT=8000
+ExecStart=/usr/bin/node /opt/asterisk-queue-monitor/index.js
+NonBlocking=true
+
+[Install]
+WantedBy=multi-user.target

@@ -26,11 +26,8 @@ const moduleObj = {
               loose: true,
               useBuiltIns: 'usage',
               corejs: 3,
-              // targets: 'web'
-              targets: {
-                'node': 'current',
-                'chrome': '71'
-              }
+              targets: 'last 2 Chrome versions',
+              shippedProposals: true
             }],
 
             '@babel/preset-react'
@@ -62,7 +59,6 @@ const client = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist/public')
-    // path: path.resolve(__dirname, 'dist')
   },
   module: moduleObj,
   plugins: [
@@ -76,8 +72,7 @@ const client = {
   ],
   // devServer: {
   //   port: 3030,
-  //   // contentBase: path.resolve(__dirname, 'dist/public'),
-  //   contentBase: path.resolve(__dirname, 'dist'),
+  //   contentBase: path.resolve(__dirname, 'dist/public'),
   //   // publicPath: '/',
   //   // compress: true,
   //   // open: true,
@@ -107,7 +102,7 @@ const client = {
         vendor: {
           test: /node_modules/,
           name: 'vendors',
-          chunks: 'all'
+          chunks: 'initial'
         }
       }
     }
@@ -147,8 +142,6 @@ const queueDaemon = {
   ]
 }
 
-// module.exports = [client, server, queueDaemon]
-// module.exports = [server, queueDaemon, client]
 // module.exports = server
 module.exports = [client, queueDaemon]
 

@@ -57,6 +57,7 @@ class App extends Component {
 
   state = {
     showAllCallers: false,
+    sortQueuesByActive: config.sortQueuesByActive || true,
     callers: [],
     operators: [],
     queueSizes: []
@@ -137,6 +138,7 @@ class App extends Component {
         <OperatorTable
           operators={this.state.operators}
           queueSizes={this.state.queueSizes}
+          sortQueuesByActive={this.state.sortQueuesByActive}
         />
       </React.Fragment>
     )

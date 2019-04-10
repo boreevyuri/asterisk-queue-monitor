@@ -36,7 +36,7 @@ class Operator extends React.Component {
 
   updateData(data) {
     if (data.queue) {
-      if (+data.inCall) {
+      if (+data.inCall && this.props.sortQueuesByActive) {
         this.queue.splice(0, 0, <QueueName key={this.queue.length} active={data.inCall}>{data.queue} </QueueName>)
         return
       }
