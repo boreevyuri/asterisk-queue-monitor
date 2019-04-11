@@ -37,9 +37,9 @@ cp queueDaemon/config.example.js queueDaemon/config.js
 npm run build
 ```
 
-### Launch it
+### Launch it...
 
-* and now we got app
+after build we got something like that:
 
 ```
 - asterisk-queue-monitor
@@ -50,8 +50,8 @@ npm run build
 | - index.js (web server)
 ```
 
-#### By own hands
-* it is possible to run all by own hands
+#### ... by own hands
+it is possible to run all by own hands
 
 ```
 #web server
@@ -63,8 +63,8 @@ node dist/queue.daemon.js
 
 or we can use pm2, nodemon, etc...
 
-#### Systemd
-* you can use service-files to run it via systemctl if your OS supports systemd (change paths inside if needed and change `User=node` and `Group=node` to your unprivileged user)
+#### ... via Systemd
+you can use service-files to run it via systemctl if your OS supports systemd (change paths inside if needed and change `User=node` and `Group=node` to your unprivileged user)
 
 ```
 cp contrib/*.service /etc/systemd/system/
@@ -82,7 +82,7 @@ systemctl enable asterisk-monitor
 systemctl start asterisk-monitor
 ```
 
-* web server will start at localhost on TCP:8000. You can install nginx as reverse-proxy, that will handle TLS-connections for example, and will work as cache if you'll need it (I recommend to cache queries for 1 or 2 seconds). You can use simple nginx config to do that (comments included).
+web server will start at localhost on TCP:8000. You can install nginx as reverse-proxy, that will handle TLS-connections for example, and will work as cache if you'll need it (I recommend to cache queries for 1 or 2 seconds). You can use simple nginx config to do that (comments included).
 
 ```
 cp contrib/vhost.conf.nginx /etc/nginx/conf.d/10-asteriskmon.conf
