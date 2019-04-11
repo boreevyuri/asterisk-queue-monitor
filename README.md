@@ -37,7 +37,7 @@ cp queueDaemon/config.example.js queueDaemon/config.js
 npm run build
 ```
 
-###Launch it
+### Launch it
 
 * and now we got app
 
@@ -50,7 +50,7 @@ npm run build
 | - index.js (web server)
 ```
 
-####By own hands
+#### By own hands
 * it is possible to run all by own hands
 
 ```
@@ -63,7 +63,7 @@ node dist/queue.daemon.js
 
 or we can use pm2, nodemon, etc...
 
-####Systemd
+#### Systemd
 * you can use service-files to run it via systemctl if your OS supports systemd (change paths inside if needed and change `User=node` and `Group=node` to your unprivileged user)
 
 ```
