@@ -1,25 +1,28 @@
-import React, {Component} from 'react'
-import {Trans} from 'react-i18next'
+import React from 'react'
+import {useTranslation} from 'react-i18next'
 
-class Title extends Component {
+const Title = ({
+                 title = null,
+                 subTitle = null,
+                 onClick = null,
+                 alert = false
+               }) => {
 
-  render() {
+  const {t} = useTranslation()
 
-    const title = <Trans>{this.props.title}</Trans>
-    const subTitle = this.props.subTitle.map((el, index) => (
-      <span key={index}>
-            {el.count} <Trans>{el.title}</Trans>&nbsp;
-          </span>
-    ))
-    const className = `${this.props.alert ? 'alert ' : ''}${this.props.onClick ? 'clickable' : ''}`
+  const renderSubTitle = subTitle.map((el, index) => (
+    <span key={`subt_${index}`}>
+      {el.count} {t(el.title)}&nbsp;
+    </span>
+  ))
 
-    return (
-      <h1 className={className}
-          onClick={this.props.onClick}>
-        <b>{title}:</b> {subTitle}
-      </h1>
-    )
-  }
+  return (
+    <h1 className={(alert ? 'alert ' : '') + (onClick ? 'clickable' : '')}
+        onClick={onClick}
+    >
+      <b>{t(title)}: {renderSubTitle}</b>
+    </h1>
+  )
 }
 
 export default Title
