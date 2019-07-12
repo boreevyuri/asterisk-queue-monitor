@@ -29,7 +29,7 @@ const moduleObj = {
               targets: 'last 2 Chrome versions',
               shippedProposals: true
             }],
-
+            // '@babel/preset-flow',
             '@babel/preset-react'
 
           ],
@@ -58,7 +58,7 @@ const client = {
   target: 'web',
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist/public')
+    path: path.resolve(__dirname, 'dist')
   },
   module: moduleObj,
   plugins: [
