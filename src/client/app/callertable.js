@@ -1,52 +1,46 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Title from './title'
 import Table from './table'
 import InfoBlock from './InfoBlock'
 
-const callerColumns = [
+const columnNames = [
   'Pos.',
   'Queue',
   'Caller number',
   'Duration'
 ]
 
-
-class CallerTable extends Component {
-
-  sortCallers(queue) {
-
-    return this.props.showAllCallers ? queue
-      : queue.filter( caller => +caller.position <= 5 ? caller : null)
-  }
-
-  render() {
-
-    const callers = this.props.callers
-
-    return (
-      <div>
-        <Title
-          title={'Queue'}
-          subTitle={[
-            {
-              count: callers.length,
-              title: 'callers'
-            }
-          ]}
-          alert={callers.length > this.props.showCallers}
-          onClick={this.props.toggleCallers}
-        />
-        {/*InfoBlock*/}
-        <InfoBlock queueSizes={this.props.queueSizes}/>
-        {/*Callers table*/}
-        <Table
-          columnNames={callerColumns}
-          mainStyleClass={'caller'}
-          children={this.sortCallers(callers)}
-        />
-      </div>
-    )
-  }
-}
+const CallerTable = ({
+                       callers = [],
+                       showAllCallers = true,
+                       toggleCallers = null,
+                       queueSizes = []
+                     }) => (
+  <div>
+    <Title
+      title={'Queue'}
+      subTitle={[
+        {
+          count: callers.length,
+          title: 'callers'
+        }
+      ]}
+      //TODO: put alert queue length into config
+      alert={callers.length > 50}
+      onClick={toggleCallers}
+    />
+    {/*InfoBlock*/}
+    <InfoBlock queueSizes={queueSizes}/>
+    {/*Callers table*/}
+    <Table
+      columnNames={columnNames}
+      mainStyleClass={'caller'}
+    >
+      {showAllCallers ? callers :
+        callers.filter(caller => +caller.position <= 5 ? caller : null)
+      }
+    </Table>
+  </div>
+)
 
 export default CallerTable
