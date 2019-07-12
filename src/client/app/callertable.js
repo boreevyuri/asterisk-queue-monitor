@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Title from './title'
 import Table from './table'
-import InfoBlock from './infoblock'
+import InfoBlock from './InfoBlock'
 
 const callerColumns = [
   'Pos.',
@@ -37,7 +37,7 @@ class CallerTable extends Component {
           onClick={this.props.toggleCallers}
         />
         {/*InfoBlock*/}
-        {InfoBlock(this.props.queueSizes)}
+        <InfoBlock queueSizes={this.props.queueSizes}/>
         {/*Callers table*/}
         <Table
           columnNames={callerColumns}
