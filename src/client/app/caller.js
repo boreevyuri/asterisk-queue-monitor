@@ -20,13 +20,13 @@ class Caller extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         {this.order.map((el, index) => (
           <div key={index} className={`${this.addClass()} cell`}>
             {this[el]}
           </div>
         ))}
-      </React.Fragment>
+      </>
     )
   }
 

@@ -131,8 +131,6 @@ class App extends Component {
 
         <OperatorTable
           content={this.state.operators}
-          queueSizes={this.state.queueSizes}
-          sortQueuesByActive={this.state.sortQueuesByActive}
         />
       </>
     )
