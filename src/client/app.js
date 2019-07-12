@@ -118,29 +118,23 @@ class App extends Component {
     setTimeout('location.reload()', config.refreshPageInterval)
   }
 
-  toggleCallers() {
-    this.setState({
-      showAllCallers: !this.state.showAllCallers
-    })
-  }
-
   render() {
 
     return (
-      <React.Fragment>
+      <>
         <CallerTable
           callers={this.state.callers}
           showAllCallers={this.state.showAllCallers}
-          toggleCallers={this.toggleCallers.bind(this)}
+          toggleCallers={() => this.setState({showAllCallers: !this.state.showAllCallers})}
           queueSizes={this.state.queueSizes}
         />
 
         <OperatorTable
-          operators={this.state.operators}
+          content={this.state.operators}
           queueSizes={this.state.queueSizes}
           sortQueuesByActive={this.state.sortQueuesByActive}
         />
-      </React.Fragment>
+      </>
     )
   }
 }

@@ -1,9 +1,6 @@
 import React from 'react'
-// import TableHeader from './table.header'
-import {useTranslation} from 'react-i18next'
 
-const Table = ({columnNames: columns, mainStyleClass: className, children}) => {
-  const {t} = useTranslation()
+const Table = ({columns, className, content}) => {
   return (
     <div className={'table'}>
 
@@ -12,13 +9,14 @@ const Table = ({columnNames: columns, mainStyleClass: className, children}) => {
         {
           columns.map((text, index) => (
             <div key={index} className={'cell'}>
-              <h4>{t(text)}</h4>
+              <h4>{text}</h4>
             </div>
           ))
         }
       </div>
+
       {/*Table content*/}
-      {children.map((el, index) => (
+      {content.map((el, index) => (
         <div key={index} className={className}>
           {el.render()}
         </div>

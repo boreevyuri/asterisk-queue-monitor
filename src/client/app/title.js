@@ -1,5 +1,4 @@
 import React from 'react'
-import {useTranslation} from 'react-i18next'
 
 const Title = ({
                  title = null,
@@ -8,11 +7,9 @@ const Title = ({
                  alert = false
                }) => {
 
-  const {t} = useTranslation()
-
   const renderSubTitle = subTitle.map((el, index) => (
     <span key={`subt_${index}`}>
-      {el.count} {t(el.title)}&nbsp;
+      {el.count} {el.title}&nbsp;
     </span>
   ))
 
@@ -20,7 +17,7 @@ const Title = ({
     <h1 className={(alert ? 'alert ' : '') + (onClick ? 'clickable' : '')}
         onClick={onClick}
     >
-      <b>{t(title)}: {renderSubTitle}</b>
+      <b>{title}: {renderSubTitle}</b>
     </h1>
   )
 }
