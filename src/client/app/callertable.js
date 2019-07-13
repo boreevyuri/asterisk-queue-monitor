@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from './title'
-import Table from './table'
+import Caller from './caller'
 import InfoBlock from './InfoBlock'
 import {useTranslation} from 'react-i18next'
 
@@ -37,12 +37,22 @@ const CallerTable = ({
       {/*InfoBlock*/}
       <InfoBlock queueSizes={queueSizes}/>
       {/*Callers table*/}
-      <Table
-        columns={columns.map(el => t(el))}
-        className={'caller'}
-        content={showAllCallers ? callers :
-          callers.filter(caller => +caller.position <= 5 ? caller : null)}
-      />
+
+      <div className={'table'}>
+        {/*Table header*/}
+        <div className={'header caller'}>
+          {columns.map((el) => (
+            <div key={el} className={'cell'}>
+              <h4>{t(el)}</h4>
+            </div>
+          ))}
+        </div>
+
+        {callers.map(el => (
+          (showAllCallers || el.position <=5) ? <Caller props={el}/> : null
+        ))}
+
+      </div>
     </div>
   )
 }

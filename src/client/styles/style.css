@@ -131,7 +131,12 @@ h1 {
   background: lightgrey;
 }
 
-.caller .longwait {
+/*.caller .longwait {*/
+/*  font-weight: bold;*/
+/*  background: lightyellow;*/
+/*}*/
+
+.longwait {
   font-weight: bold;
   background: lightyellow;
 }

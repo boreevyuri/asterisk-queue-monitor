@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import _ from 'lodash'
 import config from './config'
-import Caller from './app/caller'
 import Operator from './app/operator'
 import CallerTable from './app/callertable'
 import OperatorTable from './app/operatortable'
@@ -77,7 +76,7 @@ class App extends Component {
       //get callerList
       if (!_.isEmpty(queue['callerList'])) {
         _.forIn(queue['callerList'], (caller) => {
-          callers.push(new Caller(caller))
+          callers.push(caller)
         })
         queueSizes.push({
           name: queue['queue'],
@@ -119,7 +118,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <>
         <CallerTable

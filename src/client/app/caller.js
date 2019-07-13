@@ -1,35 +1,15 @@
 import React from 'react'
 
-class Caller extends React.Component {
-
-  name = this.props.name
-  queue = this.props.queue
-  position = this.props.position
-  duration = this.props.duration
-  order = this.props.order || [
-    'position',
-    'queue',
-    'name',
-    'duration'
-  ]
-  maxDuration = 600
-
-  addClass() {
-    return +this.duration > this.maxDuration ? `longwait ` : null
-  }
-
-  render() {
-    return (
-      <>
-        {this.order.map((el, index) => (
-          <div key={index} className={`${this.addClass()} cell`}>
-            {this[el]}
-          </div>
-        ))}
-      </>
-    )
-  }
-
+const Caller = ({props}) => {
+  const {position, queue, name, duration, maxDuration = 400} = props
+  return (
+    <div className={`caller ${+duration > maxDuration ? ' longwait' : ''}`}>
+      <div className={'cell'}>{position}</div>
+      <div className={'cell'}>{queue}</div>
+      <div className={'cell'}>{name}</div>
+      <div className={'cell'}>{duration}</div>
+    </div>
+  )
 }
 
 export default Caller
