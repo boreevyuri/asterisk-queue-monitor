@@ -49,7 +49,7 @@ const CallerTable = ({
         </div>
 
         {callers.map(el => (
-          (showAllCallers || el.position <=5) ? <Caller props={el}/> : null
+          (showAllCallers || el.position <=5) ? <Caller key={el.name} props={el}/> : null
         ))}
 
       </div>
