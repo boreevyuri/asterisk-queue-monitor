@@ -87,14 +87,18 @@ class App extends Component {
       //get memberList
       if (!_.isEmpty(queue['memberList'])) {
         _.forIn(queue['memberList'], (member) => {
+          console.log(member)
+          // operators.findIndex( operator => operator.id === member.id) === -1 ? operators.push(member)
+          //   : operators[]
+          // operators.map(operator =>
+          //   member.name === operator.name ? {} : operator
+          // )
           let founded = _.find(operators, {'name': member['name']})
           // console.log(founded)
-          switch (founded) {
-            case undefined:
-              operators.push(new Operator(member))
-              break
-            default:
-              founded.updateData(member)
+          if (founded === undefined) {
+            operators.push(new Operator(member))
+          } else {
+            founded.updateData(member)
           }
         })
       }

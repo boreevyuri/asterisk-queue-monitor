@@ -119,15 +119,15 @@ h1 {
   background: indianred;
 }
 
-.oper .busy {
+.busy {
   background: indianred;
 }
 
-.oper .free {
+.free {
   background: darkseagreen;
 }
 
-.oper .paused {
+.paused {
   background: lightgrey;
 }
 

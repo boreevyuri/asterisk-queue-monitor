@@ -8,27 +8,19 @@ const QueueName = ({active, queueName}) => (
 class Operator extends React.Component {
 
   name = this.props.name
-  order = this.props.order || [
-    'name',
-    'queue',
-    'lastCall',
-    'statusRendered'
+  queue = [
+    <QueueName
+      key={0}
+      active={this.props.inCall}
+      queueName={this.props.queue}
+    />
   ]
-  status = this.props.status
-  statusRendered = this.renderStatus()
-  paused = this.props.paused
-  inCall = this.props.inCall
-  lastCall = this.props.lastCall !== '0' ?
-    new Date(this.props.lastCall * 1000).toLocaleTimeString() : ''
-  queue = [<QueueName key={0} active={this.props.inCall} queueName={this.props.queue}/>]
 
   updateData(data) {
-    if (data.queue) {
-      if (+data.inCall) {
-        this.queue.splice(0, 0, <QueueName key={this.queue.length} active={data.inCall} queueName={data.queue}/>)
-        return
-      }
-      this.queue.push(<QueueName key={this.queue.length} active={data.inCall} queueName={data.queue}/>)
+    const {queue, inCall} = data
+    if (queue) {
+      this.queue = +inCall ? [<QueueName key={this.queue.length} active={inCall} queueName={queue}/>, ...this.queue]
+        : [...this.queue, <QueueName key={this.queue.length} active={inCall} queueName={queue}/>]
     }
   }
 
@@ -39,23 +31,24 @@ class Operator extends React.Component {
   }
 
   addClass() {
-    return +this.paused ? `paused`
-      : +this.status === 2 ? `busy`
+    return +this.props.paused ? `paused`
+      : +this.props.status === 2 ? `busy`
         : `free`
   }
 
-  render() {
+  getLastCallTime() {
+    return !!(+this.props.lastCall) && new Date(this.props.lastCall * 1000).toLocaleTimeString()
+  }
 
+  render() {
     return (
       <>
-        {this.order.map((el, index) => (
-          <div key={index} className={`${this.addClass()} cell`}>
-            {this[el]}
-          </div>
-        ))}
+        <div className={'cell'}>{this.props.name}</div>
+        <div className={'cell'}>{this.queue}</div>
+        <div className={'cell'}>{this.getLastCallTime()}</div>
+        <div className={'cell'}>{this.renderStatus()}</div>
       </>
     )
-
   }
 }
 
