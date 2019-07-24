@@ -4,6 +4,12 @@ import config from './config'
 import Operator from './app/operator'
 import CallerTable from './app/callertable'
 import OperatorTable from './app/operatortable'
+import {connect} from 'react-redux'
+import {toggleCallers} from './actions/callerActions'
+import {updateQueue} from './actions/queueActions'
+
+
+// import NewOperator from './components/Operator'
 
 /**
  const exampleQueue = {
@@ -55,15 +61,16 @@ import OperatorTable from './app/operatortable'
 class App extends Component {
 
   state = {
-    showAllCallers: false,
+    // showAllCallers: false,
     sortQueuesByActive: config.sortQueuesByActive || true,
-    callers: [],
+    // callers: [],
     operators: [],
-    queueSizes: []
+    queueSizes: [],
+    newOperators: []
   }
 
   updateQueue = async () => {
-    let callers = []
+    // let callers = []
     let operators = []
     let queueSizes = []
 
@@ -73,11 +80,11 @@ class App extends Component {
 
     _.forIn(content, (queue) => {
 
-      //get callerList
+      // get callerList
       if (!_.isEmpty(queue['callerList'])) {
-        _.forIn(queue['callerList'], (caller) => {
-          callers.push(caller)
-        })
+        // _.forIn(queue['callerList'], (caller) => {
+        //   callers.push(caller)
+        // })
         queueSizes.push({
           name: queue['queue'],
           count: _.size(queue['callerList'])
@@ -87,12 +94,6 @@ class App extends Component {
       //get memberList
       if (!_.isEmpty(queue['memberList'])) {
         _.forIn(queue['memberList'], (member) => {
-          console.log(member)
-          // operators.findIndex( operator => operator.id === member.id) === -1 ? operators.push(member)
-          //   : operators[]
-          // operators.map(operator =>
-          //   member.name === operator.name ? {} : operator
-          // )
           let founded = _.find(operators, {'name': member['name']})
           // console.log(founded)
           if (founded === undefined) {
@@ -106,7 +107,7 @@ class App extends Component {
 
     //Fill state
     this.setState({
-      callers,
+      // callers,
       operators,
       queueSizes
     })
@@ -114,29 +115,62 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.updateQueue()
+    // this.props.getCallers(config.queueUrl)
+    this.props.updateQueue(config.queueUrl)
     setInterval(() => {
-      this.updateQueue()
-    }, config.updateInterval)
-    setTimeout('location.reload()', config.refreshPageInterval)
+        this.props.updateQueue(config.queueUrl)
+      },
+      config.updateInterval
+    )
+    // this.updateQueue()
+    // setInterval(() => {
+    //   this.updateQueue()
+    // }, config.updateInterval)
+    // setTimeout('location.reload()', config.refreshPageInterval)
   }
 
   render() {
     return (
       <>
         <CallerTable
-          callers={this.state.callers}
-          showAllCallers={this.state.showAllCallers}
-          toggleCallers={() => this.setState({showAllCallers: !this.state.showAllCallers})}
+          callers={this.props.callers.callers}
+          showAllCallers={this.props.callers.showAllCallers}
+          toggleCallers={this.props.toggleCallers}
           queueSizes={this.state.queueSizes}
+          // queueSizes={this.props.callers.callers}
         />
 
         <OperatorTable
           content={this.state.operators}
         />
+
+        {/*<NewOperator*/}
+        {/*  name={'770111'}*/}
+        {/*  lastCall={'yesterday'}*/}
+        {/*  status={'paused'}*/}
+        {/*  queue={[*/}
+        {/*    {name: 'main', inCall: false},*/}
+        {/*    {name: 'second main', inCall: true},*/}
+        {/*    {name: 'not main', inCall: false}*/}
+        {/*  ]}*/}
+        {/*/>*/}
+        {/*<VisibleOperatorList/>*/}
       </>
     )
   }
 }
 
-export default App
+const mapStateToProps = store => ({
+  callers: store.callers,
+  operators: store.operators
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleCallers: () => dispatch(toggleCallers()),
+  updateQueue: url => dispatch(updateQueue(url, dispatch))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
