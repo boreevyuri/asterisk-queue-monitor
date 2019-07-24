@@ -1,15 +1,17 @@
 import React from 'react'
+import {useTranslation} from 'react-i18next'
 
-const Title = ({
+export const Title = ({
                  title = null,
                  subTitle = null,
                  onClick = null,
                  alert = false
                }) => {
 
+  const {t} = useTranslation()
   const renderSubTitle = subTitle.map((el, index) => (
     <span key={`subt_${index}`}>
-      {el.count} {el.title}&nbsp;
+      {el.count} {t(el.title)}&nbsp;
     </span>
   ))
 
@@ -17,9 +19,8 @@ const Title = ({
     <h1 className={(alert ? 'alert ' : '') + (onClick ? 'clickable' : '')}
         onClick={onClick}
     >
-      <b>{title}: {renderSubTitle}</b>
+      <b>{t(title)}: {renderSubTitle}</b>
     </h1>
   )
 }
 
-export default Title

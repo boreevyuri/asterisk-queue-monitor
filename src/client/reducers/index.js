@@ -3,6 +3,6 @@ import {callersReducer} from './callers'
 import {operatorsReducer} from './operators'
 
 export const rootReducer = combineReducers({
-  callers: callersReducer,
-  operators: operatorsReducer
+  callerList: callersReducer,
+  operatorList: operatorsReducer
 })

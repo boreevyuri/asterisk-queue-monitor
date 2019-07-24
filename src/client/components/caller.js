@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Caller = ({props}) => {
+export const Caller = ({props}) => {
   const {position, queue, name, duration, maxDuration = 400} = props
   return (
     <div className={`caller ${+duration > maxDuration ? ' longwait' : ''}`}>
@@ -12,4 +12,3 @@ const Caller = ({props}) => {
   )
 }
 
-export default Caller

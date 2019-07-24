@@ -1,13 +1,16 @@
 import React from 'react'
-import QueueList from './QueueList'
+import {useTranslation} from 'react-i18next'
+import * as _ from 'lodash'
 
-const NewOperator = ({name, lastCall, status, ...props}) => (
-    <div className={'oper'}>
+export const Operator = ({name, lastCall, queue, status}) => {
+      const {t} = useTranslation()
+  return (
+    <div className={`oper ${status}`}>
       <div className={'cell'}>{name}</div>
-      <QueueList {...props}/>
+      <div className={'cell'}>{queue}</div>
       <div className={'cell'}>{lastCall}</div>
-      <div className={'cell'}>{status}</div>
+      <div className={'cell'}>{t(_.capitalize(status))}</div>
     </div>
-)
+  )
+}
 
-export default NewOperator

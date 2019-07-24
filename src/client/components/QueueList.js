@@ -1,16 +1,16 @@
 import React from 'react'
 import * as _ from 'lodash'
 
-const QueueList = ({queue}) => (
-  _.sortBy(queue, [q => !q.inCall])
+export const QueueList = ({queue}) => (
+  _.sortBy(queue, [q => !q.active])
     .map(queueName => (
       <span
         key={queueName.name}
-        className={+queueName.inCall ? 'active' : 'passive'}
+        className={queueName.active ? 'active' : 'passive'}
       >
-          {queueName.name}&nbsp;
+          {queueName.queue}&nbsp;
       </span>
     ))
 )
 
-export default QueueList
+// export default QueueList

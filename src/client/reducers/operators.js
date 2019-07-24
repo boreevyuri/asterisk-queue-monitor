@@ -6,24 +6,28 @@ const initialState = {
 }
 
 const compactOperators = (array) => {
-  const resultArray = []
+  const result = []
 
-  const newArray = array.map(el => {
+  const convertedOperators = array.map(el => {
     el.queue = _.castArray({
       queue: el.queue,
-      active: el.inCall
+      active: !!(+el.inCall)
     })
+    el.lastCall = !!(+el.lastCall) && new Date(el.lastCall * 1000).toLocaleTimeString()
+    el.status = +el.paused ? `paused`
+      : +el.status === 2 ? `busy`
+      : `free`
     return el
   })
-  _.forEach(newArray, function (value) {
-    let index = _.findIndex(resultArray, el => el.name === value.name)
+  _.forEach(convertedOperators, operatorItem => {
+    let index = _.findIndex(result, el => el.name === operatorItem.name)
     if (index === -1) {
-      resultArray.push(value)
+      result.push(operatorItem)
     } else {
-      resultArray[index].queue = [...resultArray[index].queue, value.queue[0]]
+      result[index].queue = [...result[index].queue, operatorItem.queue[0]]
     }
   })
-  return resultArray
+  return result
 }
 
 export const operatorsReducer = (state = initialState, action) => {

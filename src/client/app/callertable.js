@@ -1,6 +1,6 @@
 import React from 'react'
-import Title from './title'
-import Caller from './caller'
+import Title from '../components/title'
+import {Caller} from '../components/caller'
 import InfoBlock from './InfoBlock'
 import {useTranslation} from 'react-i18next'
 
