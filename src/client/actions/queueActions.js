@@ -1,4 +1,6 @@
-import * as _ from 'lodash'
+import forIn from 'lodash-es/forIn'
+import concat from 'lodash-es/concat'
+import values from 'lodash-es/values'
 import {updateCallers} from './callerActions'
 import {updateOperators} from './operatorActions'
 
@@ -10,9 +12,9 @@ export const updateQueue = async (url, dispatch) => {
 
   const response = await fetch(url)
   const {content} = await response.json()
-  _.forIn(content, (queue) => {
-    callers = _.concat(callers, _.values(queue.callerList))
-    operators = _.concat(operators, _.values(queue.memberList))
+  forIn(content, (queue) => {
+    callers = concat(callers, values(queue.callerList))
+    operators = concat(operators, values(queue.memberList))
   })
 
   return {

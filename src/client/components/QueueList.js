@@ -1,11 +1,11 @@
 import React from 'react'
-import * as _ from 'lodash'
+import sortBy from 'lodash-es/sortBy'
 
 export const QueueList = ({queue}) => (
-  _.sortBy(queue, [q => !q.active])
+  sortBy(queue, [q => !q.active])
     .map(queueName => (
       <span
-        key={queueName.name}
+        key={queueName.queue}
         className={queueName.active ? 'active' : 'passive'}
       >
           {queueName.queue}&nbsp;

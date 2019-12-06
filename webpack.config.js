@@ -14,33 +14,23 @@ const moduleObj = {
     {
       test: /\.js$/,
       exclude: /node_modules/,
+      include: [process.cwd()],
       use: {
         loader: 'babel-loader',
         options: {
-          presets: [
-            ['@babel/preset-env', {
-              exclude: [
-                'transform-async-to-generator',
-                'transform-regenerator'
-              ],
-              loose: true,
-              useBuiltIns: 'usage',
-              corejs: 3,
-              targets: 'last 2 Chrome versions',
-              shippedProposals: true
-            }],
-            // '@babel/preset-flow',
-            '@babel/preset-react'
-
-          ],
-
           plugins: [
             ['module:fast-async', {spec: true}],
             '@babel/plugin-proposal-class-properties',
-            'lodash'
+            ['lodash', {id: ['lodash-es']}]
+          ],
+          presets: [
+            ['@babel/preset-env', {
+              "modules": false
+            }],
+            '@babel/preset-react'
           ]
         }
-      }
+      },
     },
     {
       test: /\.css$/,
@@ -52,7 +42,6 @@ const moduleObj = {
 const client = {
   mode: isDevelopment ? 'development' : 'production',
   entry: {
-    'polyfill': '@babel/polyfill',
     'client': './src/client/index.js'
   },
   target: 'web',
@@ -66,9 +55,11 @@ const client = {
       template: 'src/client/index.html'
     }),
     new LodashModuleReplacementPlugin({
-      shorthands: true
+      // shorthands: true
     }),
-    // new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static'
+    // })
   ],
   // devServer: {
   //   port: 3030,
@@ -126,22 +117,22 @@ const client = {
 //   ]
 // }
 
-const queueDaemon = {
-  mode: isDevelopment ? 'development' : 'production',
-  entry: {
-    'queue.daemon': './src/queueDaemon/index.js'
-  },
-  target: 'node',
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  module: moduleObj,
-  externals: [
-    nodeExternals()
-  ]
-}
+// const queueDaemon = {
+//   mode: isDevelopment ? 'development' : 'production',
+//   entry: {
+//     'queue.daemon': './src/queueDaemon/index.js'
+//   },
+//   target: 'node',
+//   output: {
+//     filename: '[name].js',
+//     path: path.resolve(__dirname, 'dist')
+//   },
+//   module: moduleObj,
+//   externals: [
+//     nodeExternals()
+//   ]
+// }
 
 // module.exports = server
-module.exports = [client, queueDaemon]
-
+// module.exports = [client, queueDaemon]
+module.exports = client

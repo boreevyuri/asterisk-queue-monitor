@@ -1,5 +1,7 @@
 import {ADD_OPERATOR, UPDATE_OPERATORS} from '../actions/operatorActions'
-import * as _ from 'lodash'
+import castArray from 'lodash-es/castArray'
+import forEach from 'lodash-es/forEach'
+import findIndex from 'lodash-es/findIndex'
 
 const initialState = {
   operators: []
@@ -9,7 +11,7 @@ const compactOperators = (array) => {
   const result = []
 
   const convertedOperators = array.map(el => {
-    el.queue = _.castArray({
+    el.queue = castArray({
       queue: el.queue,
       active: !!(+el.inCall)
     })
@@ -19,8 +21,8 @@ const compactOperators = (array) => {
       : `free`
     return el
   })
-  _.forEach(convertedOperators, operatorItem => {
-    let index = _.findIndex(result, el => el.name === operatorItem.name)
+  forEach(convertedOperators, operatorItem => {
+    let index = findIndex(result, el => el.name === operatorItem.name)
     if (index === -1) {
       result.push(operatorItem)
     } else {

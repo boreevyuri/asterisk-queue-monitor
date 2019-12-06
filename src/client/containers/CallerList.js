@@ -4,6 +4,7 @@ import {Caller} from '../components/caller'
 import {Title} from '../components/title'
 import {TableHeader} from '../components/TableHeader'
 import {toggleCallers} from '../actions/callerActions'
+import InfoBlock from '../components/infoblock'
 
 const columns = [
   'Pos.',
@@ -24,6 +25,10 @@ const CallerList = ({callerList, toggleCallers}) => {
         //TODO: put alert queue length into config
         alert={callerList.callers.length > 50}
         onClick={toggleCallers}
+      />
+
+      <InfoBlock
+        callers={callerList.callers}
       />
 
       <div className={'table'}>
