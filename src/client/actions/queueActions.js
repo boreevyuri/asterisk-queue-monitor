@@ -1,6 +1,7 @@
-import forIn from 'lodash-es/forIn'
-import concat from 'lodash-es/concat'
-import values from 'lodash-es/values'
+// import { forIn, concat, values} from 'lodash'
+import forIn from 'lodash/forIn'
+import concat from 'lodash/concat'
+import values from 'lodash/values'
 import {updateCallers} from './callerActions'
 import {updateOperators} from './operatorActions'
 

@@ -23,6 +23,7 @@
   "bugs": {
     "url": "https://github.com/boreevyuri/asterisk-queue-monitor/issues"
   },
+  "sideEffects": false,
   "homepage": "https://github.com/boreevyuri/asterisk-queue-monitor#readme",
   "dependencies": {
     "asterisk-ami-client": "^1.1.5",
@@ -45,7 +46,8 @@
     "redis": "^2.8.0",
     "redux": "^4.0.4",
     "redux-promise": "^0.6.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "lodash": "latest"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.4",

@@ -1,5 +1,5 @@
 import React from 'react'
-import sortBy from 'lodash-es/sortBy'
+import sortBy from 'lodash/sortBy'
 
 export const QueueList = ({queue}) => (
   sortBy(queue, [q => !q.active])

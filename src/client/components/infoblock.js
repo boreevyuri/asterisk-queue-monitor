@@ -1,6 +1,7 @@
 import React from 'react'
-import countBy from 'lodash-es/countBy'
-import forIn from 'lodash-es/forIn'
+// import {countBy, forIn} from 'lodash'
+import countBy from 'lodash/countBy'
+import forIn from 'lodash/forIn'
 
 const InfoBlock = ({callers}) => {
 

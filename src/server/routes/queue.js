@@ -1,6 +1,7 @@
 const express = require('express')
 const redis = require('redis')
-const omit = require('lodash-es/omit')
+// const {omit} = require('lodash')
+const omit = require('lodash/omit')
 
 const router = express.Router()
 

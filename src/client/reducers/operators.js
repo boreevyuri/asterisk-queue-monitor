@@ -1,7 +1,8 @@
 import {ADD_OPERATOR, UPDATE_OPERATORS} from '../actions/operatorActions'
-import castArray from 'lodash-es/castArray'
-import forEach from 'lodash-es/forEach'
-import findIndex from 'lodash-es/findIndex'
+// import {castArray, forEach, findIndex} from 'lodash'
+import castArray from 'lodash/castArray'
+import forEach from 'lodash/forEach'
+import findIndex from 'lodash/findIndex'
 
 const initialState = {
   operators: []

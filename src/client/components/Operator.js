@@ -1,6 +1,6 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
-import capitalize from 'lodash-es/capitalize'
+import capitalize from 'lodash/capitalize'
 
 export const Operator = ({name, lastCall, queue, status}) => {
   const {t} = useTranslation()
