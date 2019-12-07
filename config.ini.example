@@ -1,0 +1,6 @@
+[ami]
+host = 127.0.0.1
+port = 5038
+login = login
+secret = password
+actionID = 111111111111

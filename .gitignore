@@ -63,3 +63,4 @@ out/
 ### Project ###
 dist/
 config.js
+config.ini

@@ -1,11 +1,15 @@
+const fs = require('fs')
+const ini = require('ini')
 const AmiClient = require('asterisk-ami-client')
 const Redis = require('redis')
-const AMI = require('./config')
 
 import QueueList from './queue.list'
 import Queue from './queue'
 import QueueMember from './queue.member'
 import Caller from './caller'
+
+const config = ini.parse(fs.readFileSync('../config.ini', 'utf-8'))
+const AMI = config.ami
 
 // Init AMI connect
 const amiClient = new AmiClient({
