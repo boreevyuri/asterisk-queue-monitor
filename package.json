@@ -4,7 +4,7 @@
   "description": "Asterisk queue monitor",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
     "start": "node index.js",
     "dev": "webpack-dev-server --open 'google chrome' --mode development --config webpack.config.js",
     "clean": "rimraf dist node_modules"
@@ -23,13 +23,15 @@
   "bugs": {
     "url": "https://github.com/boreevyuri/asterisk-queue-monitor/issues"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/client/locale/index.js"
+  ],
   "homepage": "https://github.com/boreevyuri/asterisk-queue-monitor#readme",
   "dependencies": {
     "asterisk-ami-client": "^1.1.5",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
-    "core-js": "^3.4.8",
+    "core-js": "^3.6.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
@@ -51,29 +53,34 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.5",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
-    "@types/react": "^16.9.16",
+    "@lipemat/css-mqpacker": "^8.0.1",
+    "@types/react": "^16.9.17",
     "acorn": "^6.4.0",
+    "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-lodash": "^3.3.4",
-    "css-loader": "^3.3.0",
+    "css-loader": "^3.4.0",
+    "cssnano": "^4.1.10",
     "fast-async": "^6.3.8",
     "html-webpack-plugin": "^3.2.0",
     "lodash-webpack-plugin": "^0.11.5",
+    "mini-css-extract-plugin": "^0.9.0",
+    "postcss-loader": "^3.0.0",
     "react-test-renderer": "^16.12.0",
     "redux-logger": "^3.0.6",
     "regenerator-runtime": "^0.13.3",
     "rimraf": "^2.7.1",
     "style-loader": "^0.23.1",
-    "terser-webpack-plugin": "^1.4.2",
-    "webpack": "^4.41.2",
+    "terser-webpack-plugin": "^1.4.3",
+    "webpack": "^4.41.4",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
+    "webpack-dev-server": "^3.10.1",
     "webpack-node-externals": "^1.7.2"
   }
 }
