@@ -8,6 +8,7 @@ import {QueueList} from '../components/QueueList'
 const columns = [
   'Operator',
   'Queue',
+  'Duration',
   'Last Call',
   'Status'
 ]
@@ -43,6 +44,7 @@ const OperatorList = ({operators}) => (
           }
           lastCall={operator.lastCall}
           status={operator.status}
+          duration={operator.duration}
         />
       ))}
     </div>

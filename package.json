@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "node index.js",
-    "dev": "webpack-dev-server --open 'google chrome' --mode development --config webpack.config.js",
+    "dev": "NODE_ENV=development webpack-dev-server --open 'google chrome' --mode development --config webpack.config.js",
     "clean": "rimraf dist node_modules"
   },
   "repository": {

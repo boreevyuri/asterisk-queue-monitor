@@ -13,7 +13,7 @@
   }
 
   .cell {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
 }
@@ -58,7 +58,7 @@
   }
 
   .cell {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -100,7 +100,7 @@ h1 {
 
 .oper {
   display: grid;
-  grid-template-columns: 1.5fr 6fr 2fr 2fr;
+  grid-template-columns: 1.3fr 6fr 0.6fr 1.2fr 1.4fr;
 }
 
 .infoblock {
@@ -139,6 +139,10 @@ h1 {
 .longwait {
   font-weight: bold;
   background: lightyellow;
+}
+
+.yellow {
+  background: #ffcc33;
 }
 
 .clickable {
