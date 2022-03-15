@@ -41,7 +41,7 @@
     "ini": "^1.3.5",
     "jsonwebtoken": "^8.5.1",
     "lodash": "latest",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "morgan": "^1.9.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
